@@ -1,0 +1,74 @@
+
+<head>
+  
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<body>
+    <div class="main" style="display: flex;">
+<div class="container1" style="width: 50vw;">
+  </script>
+    <section class="status">
+        <div class="container mx-auto">
+            <div class="status-box w-full lg:w-2/3 mx-auto">
+                <div class="flex items-center justify-between mb-12">
+                    <h1 class="text-xl font-bold">Track delivery status</h1>
+                    <h6 class="bg-white py-1 rounded-full px-4 text-green-600 text-xs></h6>
+                    <input id="hiddenInput" type="hidden" value="">
+                </div>
+                <ul>
+                    <li class="status_line text-sm md:text-xl pb-16" data-status="order_placed"><span>Order Placed</span>
+                    </li>
+                    <li class="status_line text-sm md:text-xl pb-16" data-status="confirmed"><span>Drone Dispatched</span>
+                    </li>
+                    <li class="status_line text-sm md:text-xl pb-16" data-status="prepared"><span>Shipped</span></li>
+                    <li class="status_line text-sm md:text-xl pb-16" data-status="delivered"><span>Out for delivery </span>
+                    </li>
+                    <li class="status_line text-sm md:text-xl" data-status="completed"><span>Delivered</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+</div>
+<div class=" container-2" style="width: 50vw; margin: auto 10px;">   
+<div id='map' style='width: 50vw; height: 80vh;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWJoYXkxMjExIiwiYSI6ImNsM3lsd3J3aDNmY3MzY29ldmZiMXpwczcifQ.PRWnCa93vyC_coFwmp3w3Q';
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [85.49,20.17], // starting position [lng, lat]
+    zoom: 9, // starting zoom
+});
+const popup = new mapboxgl.Popup({ offset: 25 }).setText(
+'Pickup Point'
+);
+const popup2 = new mapboxgl.Popup({ offset: 25 }).setText(
+'Live Location'
+);
+const popup3 = new mapboxgl.Popup({ offset: 25 }).setText(
+'Drop Point'
+);
+const marker1 = new mapboxgl.Marker()
+.setLngLat([<%- geometry.coordinates[0] %>, <%- geometry.coordinates[1] %>])
+.addTo(map)
+.setPopup(popup);
+ 
+const l1 = (85.49 + <%- geometry.coordinates[0] %>)/2;
+const l2 = (20.17+<%- geometry.coordinates[1] %>)/2;
+const marker2 = new mapboxgl.Marker({ color: 'red', rotation: 10 })
+.setLngLat([l1,l2])
+.addTo(map)
+.setPopup(popup2);
+// Create a default Marker, colored black, rotated 45 degrees.
+const marker3 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+.setLngLat([85.49,20.17])
+.addTo(map)
+.setPopup(popup3);
+
+
+</script>
+</div>
+</div>
