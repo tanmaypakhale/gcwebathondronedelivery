@@ -10,7 +10,7 @@ This is a solution to the [GC 23 - Webathon](https://drive.google.com/drive/fold
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-- [Author](#author)
+- [Contributors](#contributors)
 
 ## Overview
 
